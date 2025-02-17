@@ -1,0 +1,53 @@
+<h1>Modulo productos</h1>
+
+<nav>
+    <a routerLink="/">Inicio</a> |
+    <a routerLink="/clientes">Clientes</a> 
+</nav>
+
+<table border="1" class="tabla">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th>Id producto</th>
+        <th>Nombre producto</th>
+        <th>id entrega</th>
+        <th>tipo producto</th>
+        <th>cantidad producto</th>
+        <th>precio envío</th>
+        <th>descuento</th>
+        <th>bodega salida</th>
+        <th>bodega entrada</th>
+        <th>placa o flota</th>
+        <th>número guia</th>
+        <th>descripción</th>
+        <th>nombre cliente</th>
+        <th>fecha creacion</th>
+        <th>opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for (item of this.datosProductos; track $index) {
+        <tr>
+            <td>{{item.idProducto}}</td>
+            <td>{{item.nombreProducto}}</td>
+            <td>{{item.idDatoEntrega}}</td>
+            <td>{{item.tipoProducto}}</td>
+            <td>{{item.cantidadProducto}}</td>
+            <td>{{item.precioEnvio}}</td>
+            <td>{{item.descuento}}</td>
+            <td>{{item.bodegaSalida}}</td>
+            <td>{{item.bodegaEntrega}}</td>
+            <td>{{item.placaUfluta}}</td>
+            <td>{{item.numeroGuia}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.nombreCompleto}}</td>
+            <td>{{item.fechaCreacion}}</td>
+
+            <td>
+                <button>Editar</button>
+                <button> Eliminar </button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

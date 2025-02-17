@@ -1,0 +1,6 @@
+.formulario{
+    width: 50%; margin: auto; margin-bottom: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;
+}
+.tabla{
+    width: 100%; border-collapse: collapse; text-align: left;
+}

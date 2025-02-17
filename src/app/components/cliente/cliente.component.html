@@ -1,0 +1,109 @@
+<h1>modulo de clientes</h1>
+<nav>
+    <a routerLink="/">Inicio</a> |
+    <a routerLink="/productos">productos</a> 
+</nav>
+
+<form [formGroup]="this.formulario" (ngSubmit)="enviarFormulario()" class="formulario">
+    <h2>Formulario de Registro</h2>
+  
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombreCompleto" formControlName="nombreCompleto">
+    @if (formulario.get('nombreCompleto')?.invalid && formulario.get('nombreCompleto')?.touched) {
+        <div>
+            @if (formulario.get('nombreCompleto')?.hasError('required')) {
+                <small>El nombre es obligatorio.</small>
+            }
+            @if (formulario.get('nombreCompleto')?.hasError('minlength')) {
+                <small>Debe tener al menos 3 caracteres.</small>
+            }
+        </div>
+    }
+  
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" name="direccion" formControlName="direccion">
+    @if (formulario.get('direccion')?.invalid && formulario.get('direccion')?.touched) {
+        <div>
+            @if (formulario.get('direccion')?.hasError('required')) {
+                <small>El nombre es obligatorio.</small>
+            }
+            @if (formulario.get('direccion')?.hasError('minlength')) {
+                <small>Debe tener al menos 3 caracteres.</small>
+            }
+        </div>
+    }
+  
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono" formControlName="telefono">
+    @if (formulario.get('telefono')?.invalid && formulario.get('telefono')?.touched) {
+        <div>
+            @if (formulario.get('telefono')?.hasError('required')) {
+                <small>El nombre es obligatorio.</small>
+            }
+            @if (formulario.get('telefono')?.hasError('maxlength')) {
+                <small>Debe tener maximo 10 caracteres.</small>
+            }
+        </div>
+    }
+  
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" formControlName="email">
+    @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
+        <div>
+            @if (formulario.get('email')?.hasError('required')) {
+                <small>El nombre es obligatorio.</small>
+            }
+            @if (formulario.get('email')?.hasError('email')) {
+                <small>Debe ser un correo valido.</small>
+            }
+        </div>
+    }
+  
+    <label for="tipo">Tipo:</label>
+    <select id="tipo" name="tipoCliente" formControlName="tipoCliente">
+      <option value="nacional">Nacional</option>
+      <option value="internacional">Internacional</option>
+    </select>
+    @switch (this.opcionBoton) {
+        @case (0) {
+            <input type="submit" value="Guardar">
+        }
+        @case (1) {
+            <input type="submit" value="Actualizar">
+        }
+        @case (2) {
+            <input type="submit" value="Borrar">
+        }
+    }
+</form>
+  
+
+<table border="1" class="tabla">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Tipo</th>
+        <th>Opción</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for (item of this.datosClientes; track $index) {
+        <tr>
+            <td>{{item.idCliente}}</td>
+            <td>{{item.nombreCompleto}}</td>
+            <td>{{item.direccion}}</td>
+            <td>{{item.telefono}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.tipoCliente}}</td>
+            <td>
+                <button (click)="obtenerCliente(item, 1)">Editar</button>
+                <button (click)="obtenerCliente(item, 2)"> Eliminar </button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
